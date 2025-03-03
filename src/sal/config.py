@@ -29,6 +29,8 @@ class Config:
         0.5  # vllm is allocated 0.5 of GPU memory, the PRM uses the rest
     )
     prm_path: str = "RLHFlow/Llama3.1-8B-PRM-Deepseek-Data"
+    num_model_gpus: int = 0 # number of gpus for model, 0 means all gpus
+    num_prm_gpus: int = 0 # number of gpus for prm, 0 means all gpus
     # Output Related Options
     output_dir: str = None
     num_proc: int = None
