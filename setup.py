@@ -27,7 +27,7 @@ extras["trl"] = "trl @ git+https://github.com/huggingface/trl.git"
 install_requires = [
     "accelerate",
     "pebble",  # for parallel processing
-    "latex2sympy2==1.9.1",  # for MATH answer parsing
+    "latex2sympy2_extended==1.10.1",  # for MATH answer parsing
     "word2number",  # for MATH answer parsing
     "transformers>=4.47.0",
     "fastapi",
