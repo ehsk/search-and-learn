@@ -302,8 +302,7 @@ class SkyworkO1(PRM):
     def score(
         self, 
         questions: list[str], 
-        outputs: list[list[str]], 
-        micro_batch_size=8,
+        outputs: list[list[str]],
     ) -> list[list[float]]:
         # reference code: https://huggingface.co/Skywork/Skywork-o1-Open-PRM-Qwen-2.5-7B#huggingface-inference
         all_scores = []
@@ -322,10 +321,10 @@ class SkyworkO1(PRM):
 
             all_step_scores = []
             with torch.no_grad():
-                for i in range(0, len(input_ids), micro_batch_size):
-                    input_ids_batch = input_ids[i : i + micro_batch_size]
-                    attention_mask_batch = attention_mask[i : i + micro_batch_size]
-                    reward_flags_batch = reward_flags[i : i + micro_batch_size]
+                for i in range(0, len(input_ids), self.search_config.prm_batch_size):
+                    input_ids_batch = input_ids[i : i + self.search_config.prm_batch_size]
+                    attention_mask_batch = attention_mask[i : i + self.search_config.prm_batch_size]
+                    reward_flags_batch = reward_flags[i : i + self.search_config.prm_batch_size]
                     _, _, rewards = self.model(
                         input_ids=input_ids_batch.to(device),
                         attention_mask=attention_mask_batch.to(device),
